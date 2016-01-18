@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>logharvesting</artifactId>
+        <groupId>logharvesting</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>core</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>Core Module</name>
+    <packaging>jar</packaging>
+    <build>
+        <testResources>
+            <testResource>
+                <directory>src/test/java/resource</directory>
+            </testResource>
+        </testResources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <!-- This causes maven to build our tests into a jar for other projects to use. -->
+                            <goal>test-jar</goal>
+                        </goals>
+                        <configuration>
+                            <!-- Include only JUnit framework type classes, actual unit tests and their inner classes will be excluded. -->
+                            <excludes>
+                                <exclude>**/*Test.class</exclude>
+                                <exclude>**/*Test$*.class</exclude>
+                            </excludes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
